@@ -348,6 +348,8 @@ connections.on('connection', async socket => {
   // see client's socket.emit('transport-recv-connect', ...)
   socket.on('transport-recv-connect', async ({ dtlsParameters, serverConsumerTransportId }) => {
     console.log(`DTLS PARAMS: ${dtlsParameters}`)
+    console.log(`DTLS PARAMS2: ${dtlsParameters[0]}`)
+    console.log(`consumerTransport: ${consumerTransport}`)
     const consumerTransport = transports.find(transportData => (
       transportData.consumer && transportData.transport.id == serverConsumerTransportId
     )).transport
