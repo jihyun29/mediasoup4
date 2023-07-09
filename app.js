@@ -306,6 +306,7 @@ connections.on('connection', async socket => {
 
   const getTransport = (socketId) => {
     const [producerTransport] = transports.filter(transport => transport.socketId === socketId && !transport.consumer)
+    console.log(producerTransport.transport)
     return producerTransport.transport
   }
 
