@@ -306,7 +306,7 @@ connections.on('connection', async socket => {
 
   const getTransport = (socketId) => {
     const [producerTransport] = transports.filter(transport => transport.socketId === socketId && !transport.consumer)
-    console.log(producerTransport.transport)
+    //console.log(producerTransport.transport)
     return producerTransport.transport
   }
 
@@ -349,8 +349,6 @@ connections.on('connection', async socket => {
   // see client's socket.emit('transport-recv-connect', ...)
   socket.on('transport-recv-connect', async ({ dtlsParameters, serverConsumerTransportId }) => {
     console.log(`DTLS PARAMS: ${dtlsParameters}`)
-    console.log(`DTLS PARAMS2: ${dtlsParameters[0]}`)
-    console.log(`consumerTransport: ${consumerTransport}`)
     const consumerTransport = transports.find(transportData => (
       transportData.consumer && transportData.transport.id == serverConsumerTransportId
     )).transport
