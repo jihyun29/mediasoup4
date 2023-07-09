@@ -417,6 +417,9 @@ connections.on('connection', async socket => {
   socket.on('consumer-resume', async ({ serverConsumerId }) => {
     console.log('consumer resume')
     const { consumer } = consumers.find(consumerData => consumerData.consumer.id === serverConsumerId)
+    console.log('-------------1');
+    console.log(consumer);
+    console.log('-------------2');
     await consumer.resume()
   })
 })
