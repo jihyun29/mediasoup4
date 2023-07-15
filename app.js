@@ -425,6 +425,17 @@ connections.on('connection', async socket => {
   })
 })
 
+let listenip;
+let announceip;
+if (process.platform === "linux") {
+  listenip = "172.31.40.255";
+  announceip = "3.39.21.142";
+} else {
+  listenip = "127.0.0.1";
+  announceip = null;
+}
+console.log("🎧 listenip is : ", listenip);
+
 const createWebRtcTransport = async (router) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -432,8 +443,8 @@ const createWebRtcTransport = async (router) => {
       const webRtcTransport_options = {
         listenIps: [
           {
-            ip: '172.25.144.1', // replace with relevant IP address
-            //announcedIp: '0.0.0.0',
+            ip: listenip, // replace with relevant IP address
+            announcedIp: announceip,
           }
         ],
         enableUdp: true,
